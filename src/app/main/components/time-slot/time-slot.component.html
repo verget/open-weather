@@ -1,5 +1,7 @@
 <div class="item-container">
   <div class="cell">{{ item.dt * 1000 | date : 'HH:mm' }}</div>
   <div *ngIf="iconUrl" class="cell"><img [src]="iconUrl"></div>
-  <div class="cell">temperature</div>
+  <div class="cell">{{ item.main.temp }} °F</div>
+  <div class="cell">{{ item.weather[0].description }}</div>
+  <div class="cell">{{ item.wind.speed }} m/h</div>
 </div>

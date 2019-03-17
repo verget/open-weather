@@ -55,4 +55,15 @@ export class IndexComponent implements OnInit {
   public dateChanged(selectedDateObject) {
     this.startTime = selectedDateObject.date.unix();
   }
+
+  public onEnter(value) {
+    if (value) {
+      this.dataService.getWeatherDataByCityName(value).subscribe(({ city, list }) => {
+        this.cityName = city;
+        if (list.length) {
+          this.state.forecastList = list;
+        }
+      })
+    }
+  }
 }

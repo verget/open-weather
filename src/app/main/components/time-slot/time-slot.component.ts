@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Forecast } from '../../models/Forecast';
 
 @Component({
   selector: 'app-time-slot',
   templateUrl: './time-slot.component.html',
-  styleUrls: ['./time-slot.component.scss']
+  styleUrls: ['./time-slot.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TimeSlotComponent implements OnInit {
 
@@ -14,7 +15,7 @@ export class TimeSlotComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log();
+    console.log(this.item);
     if (this.item.weather[0].icon) {
       this.iconUrl = `http://openweathermap.org/img/w/${this.item.weather[0].icon}.png`;
     }

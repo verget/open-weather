@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Forecast } from '../../models/Forecast';
 
 @Component({
   selector: 'app-time-panel',
   templateUrl: './time-panel.component.html',
-  styleUrls: ['./time-panel.component.scss']
+  styleUrls: ['./time-panel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TimePanelComponent implements OnChanges {
 

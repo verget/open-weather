@@ -11,9 +11,18 @@ app-time-panel, dp-day-calendar {
 
 .city-input {
   width: 100%;
-  flex: 4;
+  margin: 5px 20px;
+  height: 22px;
+  border-radius: 0.25rem;
+  font-size: 18px;
+  padding: 8px 40px 8px 8px;
 }
-
-.search-btn {
-  flex: 1;
+.input-icon {
+  background-image: url('../../../../assets/img/search.svg');
+  position: absolute;
+  top: 14px;
+  right: 34px;
+  height: 23px;
+  width: 23px;
+  cursor: pointer;
 }

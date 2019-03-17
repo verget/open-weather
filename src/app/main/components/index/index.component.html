@@ -1,13 +1,20 @@
 <input type="radio" value="metric"/> C
 <input type="radio" value="imperial"/> F
 
+
 <div class="block">
-  <input type="text" placeholder="city" class="city-input"/>
-  <button type="buttton" class="search-btn">Search</button>
+    <h2>Hourly weather and forecasts in {{ cityName }}</h2>
 </div>
 
 <div class="block">
-  <h2>Hourly weather and forecasts in {{ cityName }}</h2>
+  <input 
+    type="text" 
+    placeholder="city" 
+    class="city-input"
+    formControlName="city"
+    (keyup.enter)="onEnter(input.value)" 
+    #input/>
+  <span class="input-icon" (click)="onEnter(input.value)"></span>
 </div>
 
 <div class="block">
