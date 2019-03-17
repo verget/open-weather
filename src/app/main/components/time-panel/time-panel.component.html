@@ -1,0 +1,4 @@
+<div class="panel-container">
+  <div class="panel-header">{{startTime * 1000 | date: 'fullDate'}}</div>
+  <app-time-slot *ngFor="let item of filteredList" [item]="item"></app-time-slot>
+</div>

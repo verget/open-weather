@@ -1,0 +1,12 @@
+.item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom : 1px solid #ddd;
+
+  .cell {
+    align-self: center;
+    justify-self: center;
+    padding: 3px;
+  }
+}

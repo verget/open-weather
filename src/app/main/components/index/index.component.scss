@@ -1,0 +1,19 @@
+.block {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+app-time-panel, dp-day-calendar {
+  margin-top: 40px;
+}
+
+.city-input {
+  width: 100%;
+  flex: 4;
+}
+
+.search-btn {
+  flex: 1;
+}
