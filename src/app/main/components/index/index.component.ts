@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { environment } from 'src/environments/environment';
 import { Position } from '../../models/Position';
-import { Forecast } from '../../models/Forecast';
-import { Observable, Subject } from 'rxjs';
 import * as moment from 'moment';
 import { StateService } from '../../services/state.service';
 
@@ -13,11 +11,7 @@ import { StateService } from '../../services/state.service';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-
-  public forecastList: Forecast[];
-  public filteredtList: Forecast[];
-  public forecastList$ = new Subject();
-  public cityName = '';
+  public selectedUnits  = 'metric';
   public startTime = moment().startOf('day').unix();
   public config = {
     firstDayOfWeek: 'mo',
@@ -26,7 +20,6 @@ export class IndexComponent implements OnInit {
   };
 
   constructor(
-    private dataService: DataService,
     private state: StateService
   ) { }
 
@@ -34,22 +27,19 @@ export class IndexComponent implements OnInit {
     const defaultPosition: Position = environment.defaultPosition;
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
-        this.fetchWeather({ latitude: position.coords.latitude, longitude: position.coords.longitude });
+        this.state.loadWeatherByPosition(
+          { 
+            latitude: position.coords.latitude, 
+            longitude: position.coords.longitude 
+          },
+          this.selectedUnits
+        );
       }, () => {
-        this.fetchWeather(defaultPosition);
+        this.state.loadWeatherByPosition(defaultPosition, this.selectedUnits);
       });
     } else {
-      this.fetchWeather(defaultPosition);
+      this.state.loadWeatherByPosition(defaultPosition, this.selectedUnits);
     }
-  }
-
-  private fetchWeather(position: Position) {
-    this.dataService.getWeatherDataByPosition(position).subscribe(({ city, list }) => {
-      this.cityName = city;
-      if (list.length) {
-        this.state.forecastList = list;
-      }
-    }, error => console.error(error))
   }
 
   public dateChanged(selectedDateObject) {
@@ -58,12 +48,14 @@ export class IndexComponent implements OnInit {
 
   public onEnter(value) {
     if (value) {
-      this.dataService.getWeatherDataByCityName(value).subscribe(({ city, list }) => {
-        this.cityName = city;
-        if (list.length) {
-          this.state.forecastList = list;
-        }
-      })
+      this.state.loadWeatherByCityName(value, this.selectedUnits);
+    }
+  }
+
+  public chageUnits(units: string) {
+    if (this.selectedUnits !== units) {
+      this.selectedUnits = units;
+      this.state.reloadWeatherByUnit(units);
     }
   }
 }

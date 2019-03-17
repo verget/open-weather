@@ -37,21 +37,24 @@ export class DataService {
    * @param position: Position 
    * @returns {Observable<{city: string, list: Forecast[]}>
    */
-  public getWeatherDataByPosition(position: Position): Observable<{city: string, list: Forecast[]}> {
+  public getWeatherDataByPosition(position: Position, units: string): Observable<{city: string, list: Forecast[]}> {
     const params = new HttpParams()
       .set('lat', position.latitude.toString())
-      .set('lon', position.longitude.toString());
+      .set('lon', position.longitude.toString())
+      .set('units', units);
     return this.fetchWeatherData(params);
   }
 
   /**
    * Get weather data by city name
    * @param cityName: string 
+   * @param unit: string 
    * @returns {Observable<{city: string, list: Forecast[]}>}
    */
-  public getWeatherDataByCityName(cityName: string): Observable<{city: string, list: Forecast[]}> {
+  public getWeatherDataByCityName(cityName: string, units: string): Observable<{city: string, list: Forecast[]}> {
     const params = new HttpParams()
-      .set('q', cityName);
+      .set('q', cityName)
+      .set('units', units);
     return this.fetchWeatherData(params);
   }
 }

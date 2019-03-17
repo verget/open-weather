@@ -11,15 +11,14 @@ export class TimePanelComponent implements OnChanges {
 
   @Input() list: Forecast[];
   @Input() startTime: number;
+  @Input() units: 'metric' | 'imperial';
 
   private dayLength = 24 * 60 * 60;
   public filteredList: Forecast[];
   constructor() { }
 
   ngOnChanges() {
-    console.log(this.startTime, this.list);
     const endTime = this.startTime + this.dayLength;
     this.filteredList = this.list.filter(item => item.dt >= this.startTime && item.dt < endTime);
-    console.log(this.filteredList);
   }
 }

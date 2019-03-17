@@ -1,9 +1,14 @@
 .panel-container {
-  width: 380px;
+  display: flex;
+  flex-direction: column;
   .panel-header {
     border: 1px solid #ddd;
     background-color: #F5F5F5;
     padding: 7px;
     font-weight: bold;
+  }
+  .loader {
+    width: 50px;
+    margin: 50px auto;
   }
 }

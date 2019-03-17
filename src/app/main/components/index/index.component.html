@@ -1,9 +1,14 @@
-<input type="radio" value="metric"/> C
-<input type="radio" value="imperial"/> F
-
+<div class="unit-checker">
+  <div [class.selected]="selectedUnits === 'metric'" (click)="chageUnits('metric')">
+    <span>°C</span>
+  </div>
+  <div [class.selected]="selectedUnits === 'imperial'" (click)="chageUnits('imperial')">
+    <span>°F</span>
+  </div>
+</div>
 
 <div class="block">
-    <h2>Hourly weather and forecasts in {{ cityName }}</h2>
+    <h2>Hourly weather and forecasts in {{ state.cityName$ | async }}</h2>
 </div>
 
 <div class="block">
@@ -30,6 +35,7 @@
     class="item"
     [list]="state.forecastList$ | async" 
     [startTime]="startTime"
+    [units]="selectedUnits"
     class="time-panel">
   </app-time-panel>
 </div>

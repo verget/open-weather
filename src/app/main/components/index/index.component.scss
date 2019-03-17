@@ -5,6 +5,45 @@
   justify-content: space-evenly;
 }
 
+.unit-checker {
+  position: absolute;
+  right: 50px;
+  top: 20px;
+  display: flex;
+  border-radius: 0.25rem;
+
+  &>div {
+    height: 30px;
+    width: 50px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    z-index: 2;
+
+    &:first-child {
+      border-bottom-left-radius: 0.25rem;
+      border-top-left-radius: 0.25rem;
+    }
+    &:last-child {
+      border-bottom-right-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+    }
+
+    &.selected {
+      background-color: #5695d7;
+      cursor: default;
+    }
+  }
+}
+
+h2 {
+  margin-top: 40px;
+}
+
 app-time-panel, dp-day-calendar {
   margin-top: 40px;
 }
@@ -15,7 +54,7 @@ app-time-panel, dp-day-calendar {
   height: 22px;
   border-radius: 0.25rem;
   font-size: 18px;
-  padding: 8px 40px 8px 8px;
+  padding: 8px 40px 8px 15px;
 }
 .input-icon {
   background-image: url('../../../../assets/img/search.svg');

@@ -10,15 +10,15 @@ import { Forecast } from '../../models/Forecast';
 export class TimeSlotComponent implements OnInit {
 
   @Input() public item: Forecast;
+  @Input() public units: 'metric' | 'imperial';
 
   public iconUrl: string;
   constructor() { }
 
   ngOnInit() {
-    console.log(this.item);
+    console.log(this.units);
     if (this.item.weather[0].icon) {
       this.iconUrl = `http://openweathermap.org/img/w/${this.item.weather[0].icon}.png`;
     }
   }
-
 }
