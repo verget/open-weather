@@ -1,4 +1,4 @@
-<div class="item-container">
+<div class="item-container" *ngIf="item">
   <div class="cell">{{ item.dt * 1000 | date : 'HH:mm' }}</div>
   <div *ngIf="iconUrl" class="cell"><img [src]="iconUrl"></div>
   <div class="cell">

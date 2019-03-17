@@ -16,8 +16,7 @@ export class TimeSlotComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.units);
-    if (this.item.weather[0].icon) {
+    if (this.item && this.item.weather[0].icon) {
       this.iconUrl = `http://openweathermap.org/img/w/${this.item.weather[0].icon}.png`;
     }
   }

@@ -34,7 +34,7 @@
     }
 
     &.selected {
-      background-color: #5695d7;
+      background-color: #3F51B5;
       cursor: default;
     }
   }
@@ -44,7 +44,7 @@ h2 {
   margin-top: 40px;
 }
 
-app-time-panel, dp-day-calendar {
+app-time-panel, owl-date-time-inline {
   margin-top: 40px;
 }
 

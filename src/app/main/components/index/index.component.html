@@ -8,31 +8,29 @@
 </div>
 
 <div class="block">
-    <h2>Hourly weather and forecasts in {{ state.cityName$ | async }}</h2>
+  <h2>Hourly weather and forecasts in {{ state.cityName$ | async }}</h2>
 </div>
 
 <div class="block">
   <input 
     type="text" 
-    placeholder="city" 
+    placeholder="City" 
     class="city-input"
-    formControlName="city"
     (keyup.enter)="onEnter(input.value)" 
     #input/>
   <span class="input-icon" (click)="onEnter(input.value)"></span>
 </div>
 
 <div class="block">
-  <dp-day-calendar 
-    class="item"
-    [config]="config" 
-    [theme]="'dp-material'" 
-    (onSelect)="dateChanged($event)">
-  </dp-day-calendar>
+  <owl-date-time-inline 
+    [ngModel]="selectedMoment"
+    (ngModelChange)="dateChanged($event)"
+    [pickerType]="'calendar'"
+    [min]="minDate"
+    [max]="maxDate">
+  </owl-date-time-inline>
   
   <app-time-panel 
-    *ngIf="state.forecastList$"
-    class="item"
     [list]="state.forecastList$ | async" 
     [startTime]="startTime"
     [units]="selectedUnits"

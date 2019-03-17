@@ -18,7 +18,9 @@ export class TimePanelComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges() {
+    console.log(this.startTime, this.list);
     const endTime = this.startTime + this.dayLength;
-    this.filteredList = this.list.filter(item => item.dt >= this.startTime && item.dt < endTime);
+    console.log(endTime);
+    this.filteredList = this.list.filter(item => item.dt > this.startTime && item.dt <= endTime);
   }
 }
