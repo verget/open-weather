@@ -1,9 +1,9 @@
 <div class="panel-container">
   <div class="panel-header">{{startTime * 1000 | date: 'fullDate'}}</div>
-  <ng-container *ngIf="filteredList.length">
+  <ng-container *ngIf="filteredList && filteredList.length">
     <app-time-slot *ngFor="let item of filteredList" [item]="item" [units]="units"></app-time-slot>
   </ng-container>
-  <ng-container *ngIf="!filteredList.length">
+  <ng-container *ngIf="!filteredList || !filteredList.length">
     <img src="../../../../assets/img/img-loading.gif" class="loader">
   </ng-container>
 </div>

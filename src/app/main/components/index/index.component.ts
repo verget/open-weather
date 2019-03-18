@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Position } from '../../models/Position';
 import * as moment from 'moment';
@@ -29,24 +29,21 @@ export class IndexComponent implements OnInit {
         this.useRouteParams(data);
       }
     })
-
-    console.log(this.state.cityName);
     if (this.state.cityName) {
       this.state.loadWeatherByCityName(this.state.cityName, this.selectedUnits);
-    } else if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.state.loadWeatherByPosition(
-          { 
-            latitude: position.coords.latitude, 
-            longitude: position.coords.longitude 
-          },
-          this.selectedUnits
-        );
-      }, () => {
-        this.state.loadWeatherByPosition(defaultPosition, this.selectedUnits);
-      });
     } else {
-      this.state.loadWeatherByPosition(defaultPosition, this.selectedUnits);
+      this.state.loadWeatherByPosition(defaultPosition, this.selectedUnits); 
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(position => {
+          this.state.loadWeatherByPosition(
+            {
+              latitude: position.coords.latitude, 
+              longitude: position.coords.longitude 
+            },
+            this.selectedUnits
+          );
+        })
+      }
     }
   }
 

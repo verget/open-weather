@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TimePanelComponent } from './time-panel.component';
+import { TimeSlotComponent } from '../time-slot/time-slot.component';
 
 describe('TimePanelComponent', () => {
   let component: TimePanelComponent;
@@ -8,7 +9,10 @@ describe('TimePanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimePanelComponent ]
+      declarations: [ 
+        TimePanelComponent,
+        TimeSlotComponent
+       ]
     })
     .compileComponents();
   }));

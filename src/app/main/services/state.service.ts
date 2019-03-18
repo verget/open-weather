@@ -26,14 +26,14 @@ export class StateService {
   readonly forecastList$ = this._forecastList.asObservable();
   readonly cityName$ = this._cityName.asObservable();
 
-  // the getter will return the last value emitted in _forecastList subject
+  // the getter will return the last value emitted in subject
   get forecastList(): Forecast[] {
     return this._forecastList.getValue();
   }
   get cityName(): string {
     return this._cityName.getValue();
   }
-  // // assigning a value to this.todos will push it onto the observable 
+  // // assigning a value to setter will push it onto the observable 
   // // and down to all of its subsribers
   set forecastList(val: Forecast[]) {
     this._forecastList.next(val);
@@ -42,6 +42,11 @@ export class StateService {
     this._cityName.next(val);
   }
 
+  /**
+   * loadWeatherByPosition will get data from data service and change state
+   * @param position 
+   * @param units 
+   */
   public loadWeatherByPosition(position: Position, units: string): void {
     this.data.getWeatherDataByPosition(position, units).subscribe(({ city, list }) => {
       if (city) {
@@ -53,6 +58,11 @@ export class StateService {
     }, error => console.error(error))
   }
 
+  /**
+   * loadWeatherByCityName will get data from data service and change state
+   * @param name 
+   * @param units 
+   */
   public loadWeatherByCityName(name: string, units: string): void {
     this.data.getWeatherDataByCityName(name, units).subscribe(({ city, list }) => {
       if (city) {
@@ -64,6 +74,10 @@ export class StateService {
     }, error => console.error(error))
   }
 
+  /**
+   * reloadWeatherByUnit will reset current forecastList, get data from data service and change state
+   * @param units 
+   */
   public reloadWeatherByUnit(units: string): void {
     this.forecastList = [];
     this.data.getWeatherDataByCityName(this.cityName, units).subscribe(({ city, list }) => {
