@@ -26,6 +26,7 @@
     "ng-pick-datetime-moment": "^1.0.8",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
+    "webpack-dev-server": "^3.2.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
